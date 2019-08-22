@@ -30,15 +30,19 @@ const rootReducer = (state = initState, action) => {
 
     case "UPLOAD_POST":
 
-      let newPosts = state.posts.push({
-        id: action.id,
-        title: action.title,
-        body: action.body
-      });
+      // let newPosts1 = [...state.posts, {
+      //   id: action.id,
+      //   title: action.title,
+      //   body: action.body
+      // }];
 
       return {
         ...state,
-        posts: newPosts
+        posts: [...state.posts, {
+          id: action.id,
+          title: action.title,
+          body: action.body
+        }]
       } 
   
     default:
