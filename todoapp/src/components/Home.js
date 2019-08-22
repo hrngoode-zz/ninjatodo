@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import axios from "axios"
+import axios from "axios";
+import { Link } from "react-router-dom";
+import RedPanda from "../Images/redPanda.png";
+
 
 class Home extends Component {
 
@@ -7,6 +10,7 @@ class Home extends Component {
     posts: []
   }
 
+  
   componentDidMount(){
     //This returns promise (asynchronous)
     axios.get("https://jsonplaceholder.typicode.com/posts").then(res => {
@@ -22,10 +26,14 @@ class Home extends Component {
       posts.map( post => {
         return (
           <div className="post card" key={post.id}>
+            <img src={RedPanda} alt="Red panda"/>
             <div className="card-content">
-              <span className="card-title">
-                {post.title}
-              </span>
+              <Link to={"/" + post.id}>
+                <span className="card-title">
+                  {post.title}
+                </span>
+              </Link>
+              
               <p>{post.body}</p>
             </div>
           </div>
@@ -34,7 +42,7 @@ class Home extends Component {
       <div className="center">No posts yet.</div>
     )
     return (
-      <div className="container">
+      <div className="container home">
         <h4 className="center">Home</h4>
         {postList}
       </div>
