@@ -5,6 +5,7 @@ import Home from "./components/Home"
 import About from "./components/About"
 import Contact from "./components/Contact"
 import Post from "./components/Post"
+import Upload from './components/Upload';
 
 // BrowserRouter needed to surround all routes.
 // Route loads component when url entered.
@@ -21,9 +22,9 @@ class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
+            <Route path="/upload" component={Upload} />
             <Route path="/:post_id" component={Post}/>
           </Switch>
-          
         </div>
       </BrowserRouter>
       

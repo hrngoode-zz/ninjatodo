@@ -1,27 +1,21 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import RedPanda from "../Images/redPanda.png";
+import { connect } from "react-redux";
+
+// connect is a higher order function that returns a higher order component
 
 
 class Home extends Component {
 
-  state = {
-    posts: []
-  }
-
-  
-  componentDidMount(){
-    //This returns promise (asynchronous)
-    axios.get("https://jsonplaceholder.typicode.com/posts").then(res => {
-      this.setState({
-        posts: res.data.slice(0, 10),
-      });      
-    });
-  }
+  // state = {
+  //   posts: []
+  // }
 
   render(){
-    const { posts } = this.state;
+    // const { posts } = this.state; This is replaces with the line below as the store is now supplying the posts and not the state
+    const { posts } = this.props;
+    console.log(this.props)
     const postList = posts.length ? (
       posts.map( post => {
         return (
@@ -50,4 +44,11 @@ class Home extends Component {
   }
 }
 
-export default Home;
+//This fn maps the posts from the store state onto the props post
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts,
+  }
+}
+
+export default connect(mapStateToProps)(Home);

@@ -19,7 +19,31 @@ const initState = {
 }
 
 const rootReducer = (state = initState, action) => {
-  return state;
+  switch (action.type) {
+    case "DELETE_POST":
+      let newPosts = state.posts.filter( element => element.id !== action.id );
+
+      return {
+        ...state, 
+        posts: newPosts
+      }
+
+    case "UPLOAD_POST":
+
+      let newPosts = state.posts.push({
+        id: action.id,
+        title: action.title,
+        body: action.body
+      });
+
+      return {
+        ...state,
+        posts: newPosts
+      } 
+  
+    default:
+      return state;
+  }
 }
 
 export default rootReducer;
