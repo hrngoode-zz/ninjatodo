@@ -19,4 +19,5 @@ const Navbar = (props) => {
   )
 }
 
+// This gives Navbar component HOC ability so it can access props
 export default withRouter(Navbar);
