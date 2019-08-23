@@ -1,5 +1,16 @@
 import { LoremIpsum } from "lorem-ipsum";
 
+let li = new LoremIpsum({
+  sentencesPerParagraph: {
+    max: 6,
+    min: 3
+  },
+  wordsPerSentence: {
+    max: 55,
+    min: 30
+  }
+})
+
 
 export const deletePost  = (id) => {
   return {
@@ -13,15 +24,6 @@ export const uploadPost = (id, title, body) => {
     type: "UPLOAD_POST",
     id: Math.floor(Math.random() * 10000), 
     title: title,
-    body: new LoremIpsum({
-      sentencesPerParagraph: {
-        max: Math.floor(Math.random() * 10),
-        min: 0
-      },
-      wordsPerSentence: {
-        max: Math.floor(Math.random() * 10),
-        min: 0
-      }
-    })
+    body: li.generateSentences(1)
   }
 }
